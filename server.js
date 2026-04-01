@@ -8,7 +8,11 @@ const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+const key = process.env.ANTHROPIC_API_KEY;
+console.log("Key exists:", !!key);
+console.log("Key length:", key ? key.length : 0);
+console.log("Key start:", key ? key.substring(0, 20) : "MISSING");
+const anthropic = new Anthropic({ apiKey: key });
 
 // In-memory store for active call conversations
 const callSessions = {};
